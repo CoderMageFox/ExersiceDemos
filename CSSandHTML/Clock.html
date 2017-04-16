@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <style>
+
     body{
         background:rgb(240,233,200);
         height:100vh;
         margin:0
         justify-content:center;
         align-items:center;
+    }
+    .clock>div{
+        transition: all .5s;
     }
     .clockouter{
         display:flex;
@@ -81,10 +85,8 @@
         top: 50%;
         width: 60px;
         transform: rotate(-90deg);
-        transform-origin: 0 0;    }
+        transform-origin: 0 0;
 
-    .clock>div{
-        transition: all .5s;
 
     }
     .innershadow
@@ -95,7 +97,7 @@
         width:130px;
         margin:100px 115px;
         filter:alpha(Opacity=60);
-        opacity: 0.3;
+        opacity: 0.15;
         transform:rotate(-35deg);
 
     }
@@ -104,7 +106,7 @@
         position:absolute;
         background:linear-gradient(black,#F0E9C8);
         height:250px;
-        width:270px;
+        width:265px;
         margin:130px 90px;
         filter:alpha(Opacity=-60);
         opacity: 0.3;
@@ -165,6 +167,7 @@
         transform-origin: 100% 100%;
 
     }
+
 </style>
 <head>
     <meta charset="utf-8">
