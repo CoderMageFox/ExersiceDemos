@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body{
+        background:rgb(240,233,200);
+        height:100vh;
+        margin:0
+        justify-content:center;
+        align-items:center;
+    }
+    .clockouter{
+        display:flex;
+        background:rgb(245,111,78);
+        border:4px solid white;
+        width:270px;
+        height:270px;
+        border-radius:50%;
+        margin:0 auto;
+        position:relative;
+        box-shadow:1px 1px 3px;
+
+    }
+
+    .clockinner{
+        border:2px solid white;
+        background:rgb(245,243,237);
+        width:135px;
+        height:135px;
+        border-radius:50%;
+        margin:68px 68px auto;
+        position:absolute;
+        box-shadow:1px 1px 3px;
+
+        z-index:0;
+    }
+
+    .timemarks>li{
+        display:block;
+        width:.2em;
+        height:.6em;
+        background:#929394;
+        position:absolute;
+        top:50%; left:50%;
+        margin:-67px auto;
+    }
+    .timemarks li:first-child{
+    }
+    .timemarks li:nth-child(2){
+        margin:-44px 46px auto;
+        transform:rotate(45deg)
+    }
+    .timemarks li:nth-child(3){
+        margin:0px 60px auto;
+        transform:rotate(90deg)
+    }
+    .timemarks li:nth-child(4){
+        margin:44px 36px auto;
+        transform:rotate(135deg)
+    }
+    .timemarks li:nth-child(5){
+        margin:57px 0px auto;
+        transform:rotate(180deg)
+    }
+    .timemarks li:nth-child(6){
+        margin:35px -49px auto;
+        transform:rotate(225deg)
+    }
+    .timemarks li:nth-child(7){
+        margin:0px -63px auto;
+        transform:rotate(270deg)
+    }
+    .timemarks li:nth-child(8){
+        margin:-48px -45px auto;
+        transform:rotate(315deg)
+    }
+    .clockinner>.second-hand{
+        position: absolute;
+        left: 50%;
+        height: 2px;
+        background: rgba(39,152,184,0.9);
+        top: 50%;
+        width: 60px;
+        transform: rotate(-90deg);
+        transform-origin: 0 0;    }
+
+    .clock>div{
+        transition: all .5s;
+
+    }
+    .innershadow
+    {
+        position:absolute;
+        background:linear-gradient(black,#F0E9C8);
+        height:200px;
+        width:130px;
+        margin:100px 115px;
+        filter:alpha(Opacity=60);
+        opacity: 0.3;
+        transform:rotate(-35deg);
+
+    }
+    .outershadow
+    {
+        position:absolute;
+        background:linear-gradient(black,#F0E9C8);
+        height:250px;
+        width:270px;
+        margin:130px 90px;
+        filter:alpha(Opacity=-60);
+        opacity: 0.3;
+        transform:rotate(-35deg);
+        z-index:-1;
+    }
+    .clockinner>.minute-hand{
+        position: absolute;
+        left: 50%;
+        height: 1px;
+        background: rgba(39,152,184,0.9);
+        top: 50%;
+        width: 40px;
+        height: 4px;
+        margin-top: -1px;
+        transform: rotate(-90deg);
+        transform-origin: 0 1px;
+    }
+
+
+
+    .clockinner>.hour-hand{
+        position: absolute;
+        left: 50%;
+        height: 1px;
+        background: rgba(39,152,184,0.9);;
+        top: 50%;
+        width: 25px;
+        height: 5px;
+        margin-top: -2px;
+        transform: rotate(-90deg);
+        transform-origin: 0 2px;
+    }
+    #heart {
+        margin:62.5px -5px;
+        position: relative;
+        width: 0px;
+        height: 0px;
+
+    }
+    #heart:before,
+    #heart:after {
+        position: absolute;
+        content: "";
+        left: 6.25px;
+        top: 0;
+        width: 6.25px;
+        height: 10px;
+        background: #F56F4E;
+        border-radius: 12.5px 12.5px 0 0;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+
+    }
+    #heart:after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+
+    }
+</style>
+<head>
+    <meta charset="utf-8">
+    <title>My Simple  CSS Clock</title>
+</head>
+<body>
+<div class="clockouter">
+    <div class="innershadow"></div>
+    <div class="outershadow"></div>
+    <div class="clockinner">
+        <div class="second-hand"></div>
+        <div class="minute-hand"></div>
+        <div class="hour-hand"></div>
+        <div class="timemarks">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li id="heart"></li>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+
+    function step(){
+        var now = new Date()
+
+        var hours = now.getHours()
+        var minutes = now.getMinutes()
+        var seconds = now.getSeconds()
+
+        if(hours>12){
+            hours -= 12
+        }
+
+
+        var secondDeg = seconds/60 * 360
+        var minuteDeg = (minutes * 60 + seconds) / 10
+        var hourDeg = (hours*3600 + minutes*60 + seconds) / 15552000
+
+
+        console.log(secondDeg)
+        console.log(minuteDeg)
+        console.log(hourDeg)
+
+        console.log(document.querySelector('.second-hand'))
+        document.querySelector('.second-hand')
+            .style.transform = `rotate(${-90+secondDeg}deg)`
+
+        document.querySelector('.minute-hand')
+            .style.transform= `rotate(${-90+minuteDeg}deg)`
+
+        document.querySelector('.hour-hand')
+            .style.transform= `rotate(${-90+hourDeg}deg)`
+    }
+
+    step()
+    setInterval(function(){
+        step()
+    },1000)
+
+    function step(){
+        var now = new Date()
+
+        var hours = now.getHours()
+        var minutes = now.getMinutes()
+        var seconds = now.getSeconds()
+
+        if(hours>12){
+            hours -= 12
+        }
+
+
+        var secondDeg = seconds/60 * 360
+        var minuteDeg = (minutes * 60 + seconds) / 10
+        var hourDeg = (hours*3600 + minutes*60 + seconds) / 15552000
+
+
+        console.log(secondDeg)
+        console.log(minuteDeg)
+        console.log(hourDeg)
+
+        console.log(document.querySelector('.second-hand'))
+        document.querySelector('.second-hand')
+            .style.transform = `rotate(${-90+secondDeg}deg)`
+
+        document.querySelector('.minute-hand')
+            .style.transform= `rotate(${-90+minuteDeg}deg)`
+
+        document.querySelector('.hour-hand')
+            .style.transform= `rotate(${-90+hourDeg}deg)`
+    }
+
+    step()
+    setInterval(function(){
+        step()
+    },1000)
+</script>
+<!-- Copyright (c) CoderMageFox. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.-->
+</html>
