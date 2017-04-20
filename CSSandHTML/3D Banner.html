@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Banner</title>
+    <style>
+*{
+    box-sizeing:border-box;
+}
+.wrapper{
+    min-height: 100vh;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#parent1{
+    width: 60%;
+    padding: 0px;
+    perspective: 1000px;
+}
+
+#banner1{
+    height: 40vh;
+    background: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+    box-shadow: 0px 0px 10px 0px hsla(0,0%,0%,0.55);
+    opacity:0.5;
+}
+
+</style>
+</head>
+<body>
+<div class="wrapper">
+    <div id="parent1">
+        <div id="banner1" >
+            My Banner
+           </div>
+    </div>
+</div>
+</body>
+<script>
+    parent1.addEventListener('mousemove',function (e) {
+        let width=parent1.getBoundingClientRect().width
+        let height=parent1.getBoundingClientRect().height
+        //getBoundingClientRect().xxx xxx边距离页面边距的距离
+        let xcenter=parent1.offsetLeft + width/2
+        let ycenter=parent1.offsetTop +height/2
+
+        let xDiff=e.clientX-xcenter
+        let yDiff=e.clientY-ycenter
+
+        let xpercent=xDiff/(width/2)
+        let ypercent=yDiff/(height/2)
+
+        let xDeg=xpercent*6
+        let yDeg=ypercent*5
+
+        banner1.style.transform=`translateZ(0px) rotateX(${-yDeg*0.5}deg) rotateY(${xDeg*0.5}deg)`
+        banner1.style.opacity=1.5-Math.abs(xpercent+ypercent);
+        console.log(parent1.style.transform)
+        console.log(xpercent)
+        console.log(ypercent)
+    })
+</script>
+<!-- Copyright (c) CoderMageFox. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.-->
+</html>
