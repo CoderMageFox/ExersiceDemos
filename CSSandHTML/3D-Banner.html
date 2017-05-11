@@ -15,7 +15,7 @@
     align-items: center;
 }
 #parent1{
-    width: 60%;
+    width: 100%;
     padding: 0px;
     perspective: 1000px;
 }
@@ -45,22 +45,21 @@
 </body>
 <script>
     parent1.addEventListener('mousemove',function (e) {
-        let width=parent1.getBoundingClientRect().width
-        let height=parent1.getBoundingClientRect().height
+        let width=parent1.getBoundingClientRect().width;
+        let height=parent1.getBoundingClientRect().height;
         //getBoundingClientRect().xxx xxx边距离页面边距的距离
-        let xcenter=parent1.offsetLeft + width/2
-        let ycenter=parent1.offsetTop +height/2
+        let xcenter=parent1.offsetLeft + width/2;
+        let ycenter=parent1.offsetTop +height/2;
+        let xDiff=e.clientX-xcenter;
+        let yDiff=e.clientY-ycenter;
 
-        let xDiff=e.clientX-xcenter
-        let yDiff=e.clientY-ycenter
+        let xpercent=xDiff/(width/2);
+        let ypercent=yDiff/(height/2);
 
-        let xpercent=xDiff/(width/2)
-        let ypercent=yDiff/(height/2)
+        let xDeg=xpercent*6;
+        let yDeg=ypercent*5;
 
-        let xDeg=xpercent*6
-        let yDeg=ypercent*5
-
-        banner1.style.transform=`translateZ(0px) rotateX(${-yDeg*0.5}deg) rotateY(${xDeg*0.5}deg)`
+        banner1.style.transform=`translateZ(0px) rotateX(${-yDeg*0.5}deg) rotateY(${xDeg*0.5}deg)`;
         banner1.style.opacity=1.75-Math.sqrt(Math.pow(xpercent,2)+Math.pow(ypercent,2))
     })
 </script>
