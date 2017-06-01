@@ -44,9 +44,10 @@ body{
 .logo{
     box-sizing: border-box;
     position: absolute;
-    font-size: 10vh;
+    font-size: 100px;
     margin-top: 20%;
-    margin-left: 32.5%
+    margin-left: 27.8%;
+
 }
 #canvas {
     margin: 0 auto;
