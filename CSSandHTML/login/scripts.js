@@ -82,17 +82,9 @@ function run() {
 window.addEventListener('load', loadCanvas, false);
 
 let username=document.querySelector('#username');
-username.onchange = mailinputcheck;
-function mailinputcheck() {
+username.onchange = inputcheck;
+function inputcheck() {
     let mailreg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
-    if (mailreg.test(username.value)==1){
-        document.getElementById('usernamecheck').innerHTML='&#xe721';
-    }
-    else
-        {
-            document.getElementById('usernamecheck').innerHTML='&#xe607;';
-        }
-    if (username.value==''){
-        document.getElementById('usernamecheck').innerHTML='&#xe70a;';
-    }
-}
+    mailinput=document.getElementById('usernamecheck').innerHTML;
+    (mailreg.test(username.value)==1)?document.getElementById('usernamecheck').innerHTML='&#xe721':document.getElementById('usernamecheck').innerHTML='&#xe603';}
+

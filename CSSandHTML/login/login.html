@@ -11,32 +11,62 @@
     </canvas>
     <div class="iconfont logo">&#xe627;</div>
     <div class="input-group">
-        <div>
-        <input id="username" placeholder="Example@example.com" autocomplete="off">
+<form name="forms">
+        <input id="username" name="username" placeholder="Example@example.com" autocomplete="off">
         <i class="iconfont" id="usernamecheck">&#xe70a;</i>
-
-        </div>
         <div>
-        <input  id="password" placeholder="Password" autocomplete="off">
+        <input  type="password" id="password" name="password" placeholder="Password" autocomplete="off">
         <i class="iconfont" id="passwordcheck">&#xe652;</i>
             <br/>
-            <button type="button" class="login-button"  >登录</button>
+            <button type="submit" class="buttons"  id="loginbutton">登录</button>
+            <button type="submit" class="buttons"  id="logoutbutton" >登出</button>
+            <button type="submit" class="buttons"  id="registerbutton">注册并登录</button>
     </div>
+</form>
     </div>
 
 </div>
 
-<div class="info">Tips:<br>
-2017/05/30 已完成基本界面<br>
-2017/05/31 更换了配色，完成了邮箱验证<br>
-    已进行分辨率适配，未进行移动端适配<br>
-    ToDo:<br>
-    验证邮箱图标改变动画<br>
-    样式调整<br>
-    3Dhover(maybe?)<br>
-    后端接入<br>
-
+<div id="loginattr" class="info">
+时间仓促，登录功能未良好实现，后续将完善：）
 </div>
 </body>
 <script type="text/javascript" src="scripts.js" ></script>
+<script src="./node_modules/leancloud-storage/dist/av.js"></script>
+<script>
+    var APP_ID="rmMUFfHzKEzmlobgvrzxY1iz-gzGzoHsz";
+    var APP_Key="6UzuW9zU6WX5zAQgPAASJyQD";
+
+    AV.init({
+        appId:APP_ID,
+        appKey:APP_Key
+    });
+    let user=AV.User.current()
+    let logout=document.querySelector('#logoutbutton')
+    let login=document.querySelector('#loginbutton')
+    logout.onclick=()=>{
+        AV.User.logOut()
+        window.location.reload()
+    }
+
+    if (user){
+        document.querySelector('#loginattr').innerHTML='已作为用户'+user.attributes.username+'登录';
+        login.style.display='none';
+        logout.style.display='inline-block';
+    }
+    let signInForm=document.querySelector('form[name=forms]');
+signInForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    let user=new AV.User();
+    user.setUsername(signInForm.username.value);
+    user.setPassword(signInForm.password.value);
+    let register=document.querySelector('#registerbutton');
+    register.onclick=user.signUp().then(function (loginedUser) {
+        window.location.reload()
+    }),function (error) {
+        alert(error)
+    }
+});
+
+</script>
 </html>

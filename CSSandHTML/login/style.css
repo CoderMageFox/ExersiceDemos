@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'iconfont';  /* project id 315410 */
-    src: url('//at.alicdn.com/t/font_c135iu3x3zv6ajor.eot');
-    src: url('//at.alicdn.com/t/font_c135iu3x3zv6ajor.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_c135iu3x3zv6ajor.woff') format('woff'),
-    url('//at.alicdn.com/t/font_c135iu3x3zv6ajor.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_c135iu3x3zv6ajor.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_zdqo93k5pbzc9pb9.eot');
+    src: url('//at.alicdn.com/t/font_zdqo93k5pbzc9pb9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_zdqo93k5pbzc9pb9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_zdqo93k5pbzc9pb9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_zdqo93k5pbzc9pb9.svg#iconfont') format('svg');
 }
 body{
     background: #2B363E;
@@ -53,9 +53,9 @@ body{
     margin: 0 auto;
     display: block;
 }
-.login-button{
+.buttons{
     margin-left: 5%;
-    margin-top: 15%;
+    margin-top: 10%;
     padding-top: 2%;
     padding-bottom: 2%;
     width: 80%;
@@ -64,11 +64,13 @@ body{
     font-size:15px;
     outline:none;
     border: 1px solid black;
+    display: inline-block;
 }
-.login-button:hover{
+.buttons:hover{
    cursor:pointer;
 }
 .info{
 margin-left: 40%;
     color: white;
 }
+#logoutbutton { display: none; }
